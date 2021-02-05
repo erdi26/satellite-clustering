@@ -42,8 +42,8 @@ def normalize_image(image):
     return normalized_image
 
 
-def cluster(result):
-    pixels = result.reshape((result.shape[0] * result.shape[1], 3))
+def cluster(image):
+    pixels = image.reshape((image.shape[0] * image.shape[1], 3))
 
     initial_cluster_centers = np.array([[67, 90, 94], [87, 93, 73], [48, 89, 144], [76, 100, 76], [78, 89, 85]])
     k_means_result = KMeans(n_clusters=5, n_init=1, init=initial_cluster_centers).fit(pixels)
