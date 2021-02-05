@@ -80,13 +80,9 @@ if __name__ == '__main__':
     # access command-line-argument
     path_to_image = sys.argv[1]
 
-    start = time.time()
-
     image_jpg = read_image_as_jpg(path_to_image)
-    image_normed = normalize_image(image_jpg)
-    labels = cluster(image_normed)
+    image_normalized = normalize_image(image_jpg)
+    labels = cluster(image_normalized)
     result_image = generate_clustered_image(labels, image_jpg)
     show_image(result_image)
 
-    end = time.time()
-    print('{:5.3f}s'.format(end - start))
