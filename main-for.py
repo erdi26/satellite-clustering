@@ -61,11 +61,18 @@ def generate_clustered_image(labels, image):
     color_blue = [0, 0, 255]
     color_light_green = [0, 100, 0]
 
-    result[np.where(labels == 2)] = color_blue
-    result[np.where(labels == 4)] = color_red
-    result[np.where(labels == 0)] = color_light_green
-    result[np.where(labels == 1)] = color_green
-    result[np.where(labels == 3)] = color_green
+    for x in range(result.shape[0]):
+        for y in range(result.shape[1]):
+            if (labels[x, y]) == 0:
+                result[x, y] = color_light_green
+            elif (labels[x, y]) == 1:
+                result[x, y] = color_green
+            elif (labels[x, y]) == 2:
+                result[x, y] = color_blue
+            elif (labels[x, y]) == 3:
+                result[x, y] = color_green
+            elif (labels[x, y]) == 4:
+                result[x, y] = color_red
 
     return result
 

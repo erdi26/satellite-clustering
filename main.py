@@ -25,19 +25,19 @@ def read_image_as_jpg(file):
     return image
 
 
-def norm_image(image):
-    blue_values = image[:, :, 0]
+def normalize_image(image):
+    red_values = image[:, :, 0]
     green_values = image[:, :, 1]
-    red_values = image[:, :, 2]
+    blue_values = image[:, :, 2]
 
-    sum_of_rgb_values = blue_values.astype(int) + green_values.astype(int) + red_values.astype(int)
+    sum_of_rgb_values = red_values.astype(int) + green_values.astype(int) + blue_values.astype(int)
     sum_of_rgb_values[sum_of_rgb_values == 0] = 1
 
     result = image.copy()
 
-    result[:, :, 0] = blue_values / sum_of_rgb_values * 255.0
+    result[:, :, 0] = red_values / sum_of_rgb_values * 255.0
     result[:, :, 1] = green_values / sum_of_rgb_values * 255.0
-    result[:, :, 2] = red_values / sum_of_rgb_values * 255.0
+    result[:, :, 2] = blue_values / sum_of_rgb_values * 255.0
 
     return result
 
@@ -83,7 +83,7 @@ if __name__ == '__main__':
     start = time.time()
 
     image_jpg = read_image_as_jpg(path_to_image)
-    image_normed = norm_image(image_jpg)
+    image_normed = normalize_image(image_jpg)
     labels = cluster(image_normed)
     result_image = generate_clustered_image(labels, image_jpg)
     show_image(result_image)
