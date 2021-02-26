@@ -4,9 +4,7 @@ import PIL
 import matplotlib.image as img
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
-import time
 import numpy as np
-import sys
 
 
 def read_image_as_jpg(file):
@@ -83,10 +81,7 @@ def save_image(result, name):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        path_to_image = sys.argv[1]
-    else:
-        path_to_image = input("Please enter the image path: ")
+    path_to_image = input("Please enter the image path: ")
 
     image_jpg = read_image_as_jpg(path_to_image)
     image_normalized = normalize_image(image_jpg)
@@ -96,4 +91,3 @@ if __name__ == '__main__':
 
     show_image(result_image)
     save_image(result_image, path_to_image)
-
